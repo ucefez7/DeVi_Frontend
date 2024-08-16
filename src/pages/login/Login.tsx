@@ -4,7 +4,7 @@ import { login } from '../../slice/authSlice';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import ClipLoader from 'react-spinners/ClipLoader';
-import './AdminLogin.css';
+import './adminLogin.css';
 
 interface Credentials {
   username: string;
