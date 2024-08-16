@@ -6,6 +6,8 @@ import "./navbar.scss";
 import signoutIcon from '../../assets/signout.jpeg';
 import helpIcon from '../../assets/Help.png'
 import logo from '../../assets/DeVi.png'
+import settings from '../../assets/settings.jpeg'
+import search from '../../assets/search.jpg';
 
 
 const Navbar = () => {
@@ -34,6 +36,8 @@ const Navbar = () => {
       </div>
       <div className="icons">
         <img src="/search.svg" alt="" className="icon" />
+        <img src={search} alt="" className="icon2" />
+        <img src={settings} alt="" className="icon1" />
         <div className="account-dropdown">
           <div className="user" onClick={toggleDropdown}>
             <img
