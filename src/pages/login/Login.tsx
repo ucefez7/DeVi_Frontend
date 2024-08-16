@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../slice/authSlice';
 import { useNavigate } from 'react-router-dom';
@@ -6,37 +6,41 @@ import Header from '../../components/Header/Header';
 import ClipLoader from 'react-spinners/ClipLoader';
 import './AdminLogin.css';
 
-function Login() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const authState = useSelector((state) => state.auth);
+interface Credentials {
+  username: string;
+  password: string;
+}
 
-  const [credentials, setCredentials] = useState({
+function Login() {
+  const dispatch = useDispatch<any>(); // Temporarily using 'any' for dispatch
+  const navigate = useNavigate();
+  const authState = useSelector((state: any) => state.auth);
+
+  const [credentials, setCredentials] = useState<Credentials>({
     username: '',
     password: ''
   });
 
-  const [loading, setLoading] = useState(false); // State for loader
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCredentials({
       ...credentials,
       [e.target.name]: e.target.value
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setLoading(true); // Show loader when submitting the form
+    setLoading(true);
     dispatch(login(credentials)).then(() => {
-      setLoading(false); // Hide loader after the dispatch
+      setLoading(false);
       if (authState.isAuthenticated) {
         navigate('/');
       }
     });
   };
 
-  // Automatically navigate to home if already authenticated
   useEffect(() => {
     if (authState.isAuthenticated) {
       navigate('/');
@@ -55,7 +59,7 @@ function Login() {
             placeholder="Username"
             value={credentials.username}
             onChange={handleChange}
-            disabled={loading} // Disable input while loading
+            disabled={loading}
           />
           <input
             type="password"
@@ -63,7 +67,7 @@ function Login() {
             placeholder="Password"
             value={credentials.password}
             onChange={handleChange}
-            disabled={loading} // Disable input while loading
+            disabled={loading}
           />
           <div className='err-div'>
             {authState.error && <p className="error-message" style={{color: 'red'}}>{authState.error}</p>}
