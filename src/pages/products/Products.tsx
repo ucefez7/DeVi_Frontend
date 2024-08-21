@@ -1,3 +1,21 @@
+// src/pages/products/Products.tsx
+
+interface Post {
+  id: number;
+  media: string;
+  username: string;
+  title: string;
+  description: string;
+  location: string;
+  category: string;
+  claps: number;
+  remarks: number;
+  saved: boolean;
+  shared: boolean;
+  createdAt: string;
+  sensitive: boolean;
+}
+
 import { useNavigate } from "react-router-dom";
 import "./products.scss";
 import { posts } from "../../data";
@@ -5,8 +23,7 @@ import { posts } from "../../data";
 const Products = () => {
   const navigate = useNavigate();
 
-  const handleCardClick = (post) => {
-    // navigate(`/post/${post.id}`, { state: { post } });
+  const handleCardClick = (post: Post) => {
     navigate(`/posts/${post.id}`, { state: { post } });
   };
 
