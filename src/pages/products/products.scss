@@ -26,6 +26,7 @@
   }
 
   .product-card {
+    position: relative; /* Position relative to allow absolute children positioning */
     background-color: #fff;
     border-radius: 8px;
     overflow: hidden;
@@ -37,18 +38,34 @@
     }
 
     .product-image {
-      padding-top: 10%;
       width: 100%;
       height: 140px;
       object-fit: cover;
+      display: block;
+      margin-top: 30px; /* Adjust to create space for username */
     }
 
     .product-content {
       padding: 15px;
-
+      position: relative; /* Ensure content is positioned correctly */
+      
+      .product-username {
+        position: absolute; /* Position the username absolutely */
+        top: 10px;
+        left: 15px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        background-color: #fff; /* Optional: Background to ensure text visibility */
+        padding: 5px;
+        border-radius: 4px; /* Optional: Rounded corners for background */
+        z-index: 1; /* Ensure it's on top of the image */
+      }
+      
       .product-title {
         font-size: 18px;
         font-weight: 600;
+        margin-top: 50px; /* Adjust to avoid overlap with username */
         margin-bottom: 10px;
       }
 

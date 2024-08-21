@@ -1,5 +1,5 @@
-import Single from "../../components/single/Single"
-import { singleProduct } from "../../data"
+// import Single from "../../components/single/Single"
+// import { singleProduct } from "../../data"
 import "./product.scss"
 
 const Product = () => {
@@ -7,7 +7,7 @@ const Product = () => {
   //Fetch data and send to Single Component
   return (
     <div className="product">
-       <Single {...singleProduct}/>
+       {/* <Single {...singleProduct}/> */}
     </div>
   )
 }

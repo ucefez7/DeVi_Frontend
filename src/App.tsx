@@ -8,7 +8,7 @@ import Menu from "./components/menu/Menu";
 import Login from "./pages/login/Login";
 import "./styles/global.scss";
 import User from "./pages/user/User";
-import Product from "./pages/product/Product";
+import Post from "./post/Post"; // Ensure this path is correct
 import Authentication from "./pages/authentication/authentication";
 import {
   QueryClient,
@@ -53,32 +53,28 @@ function App() {
           element: <Users />,
         },
         {
-          // path: "/products",
-          path: "/posts",
-          element: <Products />,
+          path: "/posts", // Updated path for posts
+          element: <Products />, // Products is the component showing the list of posts
         },
         {
           path: "/users/:id",
           element: <User />,
         },
         {
-          // path: "/products/:id",
-          path: "/posts/:id",
-          element: <Product />,
-        },
-        {
           path: "/authentication",
-          element: <Authentication/>,
+          element: <Authentication />,
         },
         {
-          // path: "/products",
           path: "/uploads",
           element: <PostUpload />,
         },
         {
-          // path: "/products",
           path: "/feeds",
-          element: <Feeds/>,
+          element: <Feeds />,
+        },
+        {
+          path: "/posts/:id", // Updated path for individual post details
+          element: <Post />, // Post component shows the details of a selected post
         },
       ],
     },
