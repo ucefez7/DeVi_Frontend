@@ -15,7 +15,7 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import PostUpload from "./pages/postupload/PostUpload";
-import Display from "./pages/display/Display";
+import Feeds from "./pages/feeds/Feeds";
 
 const queryClient = new QueryClient();
 
@@ -77,8 +77,8 @@ function App() {
         },
         {
           // path: "/products",
-          path: "/display",
-          element: <Display/>,
+          path: "/feeds",
+          element: <Feeds/>,
         },
       ],
     },

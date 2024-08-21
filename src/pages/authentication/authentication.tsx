@@ -7,72 +7,71 @@ import { GridColDef } from "@mui/x-data-grid";
 import { authentication } from "../../data";
 
 const columns: GridColDef[] = [
-  //{ field: "id", headerName: "ID", width: 90 },
-//   {
-//     field: "img",
-//     headerName: "Image",
-//     width: 100,
-//     renderCell: (params) => {
-//       return <img src={params.row.img || "/noavatar.png"} alt="" />;
-//     },
-//   },
   {
-    field: "title",
+    field: "id",
+    headerName: "User ID",
+    width: 90,
+  },
+  {
+    field: "pageName",
+    headerName: "Page Name",
     type: "string",
+    width: 150,
+  },
+  {
+    field: "category",
+    headerName: "Category",
+    type: "string",
+    width: 120,
+  },
+  {
+    field: "fullName",
+    headerName: "Full Name",
+    type: "string",
+    width: 200,
+  },
+  {
+    field: "phoneNumber",
     headerName: "Phone Number",
+    type: "string",
+    width: 150,
+  },
+  {
+    field: "email",
+    headerName: "Email",
+    type: "string",
     width: 250,
   },
   {
-    field: "createdAt",
-    headerName: "Created At",
+    field: "link",
+    headerName: "Link",
+    type: "string",
     width: 200,
-    type: "string",
   },
   {
-    field: "color",
-    type: "string",
+    field: "signedIn",
     headerName: "Signed In",
-    width: 150,
-  },
-
-  { field: "id", headerName: "USER ID", width: 90 },
-
-  {
-    field: "inStock",
-    headerName: "Block",
-    width: 150,
     type: "boolean",
+    width: 100,
+  },
+  {
+    field: "createdAt",
+    headerName: "Requested At",
+    type: "string",
+    width: 120,
   },
 ];
 
 const Authentication = () => {
   const [open, setOpen] = useState(false);
 
-  // TEST THE API
-
-  // const { isLoading, data } = useQuery({
-  //   queryKey: ["allproducts"],
-  //   queryFn: () =>
-  //     fetch("http://localhost:8800/api/products").then(
-  //       (res) => res.json()
-  //     ),
-  // });
-
   return (
-    <div className="products">
+    <div className="authentication">
       <div className="info">
         <h1>User Authentication</h1>
-        {/* <button onClick={() => setOpen(true)}>Edit Posts</button> */}
       </div>
-      <DataTable slug="products" columns={columns} rows={authentication} />
-      {/* TEST THE API */}
-
-      {/* {isLoading ? (
-        "Loading..."
-      ) : (
-        <DataTable slug="products" columns={columns} rows={data} />
-      )} */}
-      {open && <Add slug="post" columns={columns} setOpen={setOpen} />}
+      <DataTable slug="authentication" columns={columns} rows={authentication} />
+      {open && <Add slug="authentication" columns={columns} setOpen={setOpen} />}
     </div>
   );
 };
