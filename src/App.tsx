@@ -14,6 +14,8 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import PostUpload from "./pages/postupload/PostUpload";
+import Display from "./pages/display/Display";
 
 const queryClient = new QueryClient();
 
@@ -67,6 +69,16 @@ function App() {
         {
           path: "/authentication",
           element: <Authentication/>,
+        },
+        {
+          // path: "/products",
+          path: "/uploads",
+          element: <PostUpload />,
+        },
+        {
+          // path: "/products",
+          path: "/display",
+          element: <Display/>,
         },
       ],
     },
