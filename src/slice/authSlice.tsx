@@ -48,7 +48,8 @@ export const { loginSuccess, loginFailure, logout } = authSlice.actions;
 
 export const login = (credentials: Credentials) => async (dispatch: any) => {
   try {
-    const res = await axios.post('https://devi-backend.onrender.com/api/auth/login', credentials);
+    // const res = await axios.post('https://devi-backend.onrender.com/api/auth/login', credentials);
+    const res = await axios.post('http://localhost:8080/api/admin/login', credentials);
     localStorage.setItem('authToken', res.data.token);
     dispatch(loginSuccess(res.data.token));
   } catch (err: any) {

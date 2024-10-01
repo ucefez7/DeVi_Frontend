@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Feeds.css";
+import "./Feeds.scss";
 import DataTable from "../../components/dataTable/DataTable";
 import Add from "../../components/add/Add";
 import { GridColDef } from "@mui/x-data-grid";
@@ -66,7 +66,7 @@ const Feeds = () => {
     <div className="products">
       <div className="info">
         <h1>Feeds</h1>
-        {/* <button onClick={() => setOpen(true)}>Feeds</button> */}
+        <button onClick={() => setOpen(true)}>Feeds</button>
       </div>
       <DataTable slug="products" columns={columns} rows={products} />
       {open && <Add slug="post" columns={columns} setOpen={setOpen} />}

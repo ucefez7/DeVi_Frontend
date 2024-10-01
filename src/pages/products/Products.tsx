@@ -30,7 +30,7 @@ const Products = () => {
   return (
     <div className="products">
       <div className="info">
-        <h1>Feeds</h1>
+        <h1>Posts</h1>
       </div>
       <div className="product-grid">
         {posts.map((post) => (

@@ -1,5 +1,5 @@
 import Home from "./pages/home/Home";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet, Navigate } from "react-router-dom";
 import Users from "./pages/users/Users";
 import Products from "./pages/products/Products";
 import Navbar from "./components/navbar/Navbar";
@@ -8,18 +8,17 @@ import Menu from "./components/menu/Menu";
 import Login from "./pages/login/Login";
 import "./styles/global.scss";
 import User from "./pages/user/User";
-import Post from "./post/Post"; // Ensure this path is correct
+import Post from "./post/Post";
 import Authentication from "./pages/authentication/authentication";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
-import PostUpload from "./pages/postupload/PostUpload";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Feeds from "./pages/feeds/Feeds";
+import { useSelector } from "react-redux";
 
 const queryClient = new QueryClient();
 
 function App() {
+  const isAuthenticated = useSelector((state: any) => state.auth.isAuthenticated);
+
   const Layout = () => {
     return (
       <div className="main">
@@ -39,10 +38,14 @@ function App() {
     );
   };
 
+  const ProtectedRoute = ({ element }: { element: JSX.Element }) => {
+    return isAuthenticated ? element : <Navigate to="/login" />;
+  };
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: isAuthenticated ? <Layout /> : <Navigate to="/login" />,
       children: [
         {
           path: "/",
@@ -53,8 +56,8 @@ function App() {
           element: <Users />,
         },
         {
-          path: "/posts", // Updated path for posts
-          element: <Products />, // Products is the component showing the list of posts
+          path: "/posts",
+          element: <Products />,
         },
         {
           path: "/users/:id",
@@ -65,22 +68,18 @@ function App() {
           element: <Authentication />,
         },
         {
-          path: "/uploads",
-          element: <PostUpload />,
-        },
-        {
           path: "/feeds",
           element: <Feeds />,
         },
         {
-          path: "/posts/:id", // Updated path for individual post details
-          element: <Post />, // Post component shows the details of a selected post
+          path: "/posts/:id",
+          element: <Post />,
         },
       ],
     },
     {
       path: "/login",
-      element: <Login />,
+      element: isAuthenticated ? <Navigate to="/" /> : <Login />,
     },
   ]);
 
