@@ -29,6 +29,7 @@ export const authSlice = createSlice({
       state.isAuthenticated = true;
       state.loading = false;
       state.error = null;
+      localStorage.setItem('authToken', action.payload); // Store token in localStorage
     },
     loginFailure: (state, action: PayloadAction<string>) => {
       state.loading = false;
@@ -39,7 +40,7 @@ export const authSlice = createSlice({
       state.isAuthenticated = false;
       state.loading = false;
       state.error = null;
-      localStorage.removeItem('authToken');
+      localStorage.removeItem('authToken'); 
     },
   },
 });
@@ -48,9 +49,7 @@ export const { loginSuccess, loginFailure, logout } = authSlice.actions;
 
 export const login = (credentials: Credentials) => async (dispatch: any) => {
   try {
-    // const res = await axios.post('https://devi-backend.onrender.com/api/auth/login', credentials);
     const res = await axios.post('http://localhost:8080/api/admin/login', credentials);
-    localStorage.setItem('authToken', res.data.token);
     dispatch(loginSuccess(res.data.token));
   } catch (err: any) {
     dispatch(loginFailure(err.response?.data?.message || 'An error occurred'));

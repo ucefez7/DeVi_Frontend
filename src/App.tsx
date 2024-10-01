@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Home from "./pages/home/Home";
 import { createBrowserRouter, RouterProvider, Outlet, Navigate } from "react-router-dom";
 import Users from "./pages/users/Users";
@@ -12,12 +13,22 @@ import Post from "./post/Post";
 import Authentication from "./pages/authentication/authentication";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Feeds from "./pages/feeds/Feeds";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loginSuccess } from "./slice/authSlice";
 
 const queryClient = new QueryClient();
 
 function App() {
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector((state: any) => state.auth.isAuthenticated);
+
+  // Use localStorage to check if the user is authenticated when the app loads
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      dispatch(loginSuccess(token)); // Update Redux state with token from localStorage
+    }
+  }, [dispatch]);
 
   const Layout = () => {
     return (
