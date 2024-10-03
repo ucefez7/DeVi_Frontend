@@ -7,12 +7,12 @@ import { products } from "../../data";
 
 const columns: GridColDef[] = [
   {
-    field: "category",
+    field: "categories",
     headerName: "Category",
     width: 120,
   },
   {
-    field: "subCategory",
+    field: "subCategories",
     type: "string",
     headerName: "Sub Category",
     width: 150,
@@ -30,13 +30,13 @@ const columns: GridColDef[] = [
     width: 150,
   },
   {
-    field: "username",
+    field: "usernameOrName",
     headerName: "Username",
     type: "string",
     width: 150,
   },
   {
-    field: "media",
+    field: "mediaUrl",
     headerName: "Media",
     width: 150,
     // renderCell: (params) => {
@@ -49,14 +49,7 @@ const columns: GridColDef[] = [
     headerName: "Description",
     width: 250,
   },
-//   {
-//     field: "action",
-//     headerName: "Edit Feed",
-//     width: 150,
-//     renderCell: (params) => {
-//       return <button>Edit</button>;
-//     },
-//   },
+
 ];
 
 const Feeds = () => {

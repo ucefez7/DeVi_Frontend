@@ -177,10 +177,10 @@
       // Set isBlog to 'true' if checked, otherwise 'false'
       formData.append('isBlog', isBlogChecked ? 'true' : 'false');
 
-      fetch('https://backenddevi.onrender.com/api/posts/create-post', {
+      fetch('http://localhost:8080/api/posts/create-post', {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDdlZDYyYzVmZWQ1ODE2NDU1NjU5YiIsImlhdCI6MTcyNzc2MjgyMCwiZXhwIjoxNzI3ODQ5MjIwfQ.lLWgnKNZPeTNOWMPMCkYzuCVznfQja8DF21Exnc4yXo'
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDIxZjY5MzZhZjVkODY2YjhiMTZhNiIsImlhdCI6MTcyNzg2NDY4OSwiZXhwIjoxNzI3OTUxMDg5fQ.9ZCmuW-XOb99KbCNNNY0-qebVyEkMKnBGXouou0yBZ0'
         },
         body: formData
       })
