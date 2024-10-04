@@ -1,15 +1,78 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Feeds.scss";
 import DataTable from "../../components/dataTable/DataTable";
 import { GridColDef } from "@mui/x-data-grid";
-import { products } from "../../data";
-import Modal from "./Modal";
 import axios from "axios";
 import Swal from "sweetalert2"; // Import SweetAlert2
 import { FaInstagram, FaFacebookF, FaYoutube, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { PiBird } from "react-icons/pi";
+import Modal from "./Modal";
+
+
+
+// const columns: GridColDef[] = [
+//   {
+//     field: "categories",
+//     headerName: "Category",
+//     width: 120,
+//   },
+//   {
+//     field: "subCategories",
+//     type: "string",
+//     headerName: "Sub Category",
+//     width: 150,
+//   },
+//   {
+//     field: "location",
+//     type: "string",
+//     headerName: "Location",
+//     width: 150,
+//   },
+//   {
+//     field: "platform",
+//     headerName: "Platform",
+//     type: "string",
+//     width: 120,
+//   },
+//   {
+//     field: "usernameOrName",
+//     headerName: "Username",
+//     type: "string",
+//     width: 120,
+//   },
+//   {
+//     field: "mediaUrl",
+//     headerName: "Media",
+//     width: 120,
+    
+//   },
+//   {
+//     field: "description",
+//     type: "string",
+//     headerName: "Description",
+//     width: 150,
+//   },
+// ];
+
 
 const columns: GridColDef[] = [
+
+  {
+    field: "usernameOrName",
+    headerName: "Username",
+    type: "string",
+    width: 120,
+  },
+  
+  {
+  field: "mediaUrl",
+  headerName: "Media",
+  width: 100,
+  renderCell: (params) => {
+      return <img src={params.row.mediaUrl} alt="" />;
+    },
+},
+
   {
     field: "categories",
     headerName: "Category",
@@ -33,26 +96,18 @@ const columns: GridColDef[] = [
     type: "string",
     width: 120,
   },
-  {
-    field: "usernameOrName",
-    headerName: "Username",
-    type: "string",
-    width: 120,
-  },
-  {
-    field: "mediaUrl",
-    headerName: "Media",
-    width: 120,
-    
-  },
+
+
   {
     field: "description",
     type: "string",
     headerName: "Description",
-    width: 150,
+    width: 180,
   },
-
 ];
+
+
+
 
 
 const categoryOptions = [
@@ -73,6 +128,7 @@ const categoryOptions = [
 const Feeds = () => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false); // State for loading
+  const [posts, setPosts] = useState([]); // State for fetched data
   const [formData, setFormData] = useState({
     description: "",
     platform: "",
@@ -84,6 +140,26 @@ const Feeds = () => {
   });
 
   const [showDropdown, setShowDropdown] = useState(false);
+
+  // Fetch posts from the server
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/api/admin/feeds");
+        setPosts(response.data); // Assuming response data contains an array of posts
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to load posts. Please try again.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
   const handleCategorySelect = (categories) => {
     setFormData((prev) => ({
@@ -111,9 +187,9 @@ const Feeds = () => {
           "Content-Type": "multipart/form-data",
         },
       });
+console.log("Data ethann: " +response);
 
       if (response.status === 201) {
-        // SweetAlert2 after successful post creation
         Swal.fire({
           title: "Success!",
           text: "Post created successfully!",
@@ -124,7 +200,6 @@ const Feeds = () => {
       }
     } catch (error) {
       console.error("Error creating post:", error);
-      // Optionally, show an error alert if post creation fails
       Swal.fire({
         title: "Error!",
         text: "Failed to create the post. Please try again.",
@@ -147,29 +222,18 @@ const Feeds = () => {
 
   return (
     <div className="feeds">
+      <div className="info">
+        <div className="header-content">
+          <h1 className="feeds-title">Feeds</h1>
+          <div className="button-group">
+            <button className="create-post-button" onClick={() => setOpen(true)}>
+              Create Post
+            </button>
+          </div>
+        </div>
+      </div>
 
-    
-
-
-<div className="info">
-  <div className="header-content">
-    <h1 className="feeds-title">Feeds</h1>
-    <div className="button-group">
-      <button className="create-post-button" onClick={() => setOpen(true)}>
-        Create Post
-      </button>
-      {/* <button className="second-button">
-        New Button
-      </button> */}
-    </div>
-  </div>
-</div>
-
-
-
-
-
-      <DataTable slug="products" columns={columns} rows={products} />
+      <DataTable slug="products" columns={columns} rows={posts} />
 
       {open && (
         <Modal setOpen={setOpen}>
@@ -233,7 +297,6 @@ const Feeds = () => {
                 value={formData.categories}
                 readOnly
                 onClick={() => setShowDropdown((prev) => !prev)}
-                
               />
               {showDropdown && (
                 <div className="dropdown-options">
