@@ -1,27 +1,153 @@
-.products {
-  .info {
+.info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+
+  .header-content {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%; 
     gap: 20px;
-    margin-bottom: 20px;
 
-    button {
-      padding: 10px 20px;
-      cursor: pointer;
-      background-color: #007bff; // Blue background color
-      color: #fff; // White text color
-      border: none;
-      border-radius: 5px;
-      font-size: 14px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-      
-      &:hover {
-        background-color: #0056b3; // Darker blue on hover
-        transform: scale(1.05); // Slightly enlarge on hover
+    h1.feeds-title {
+      margin-right: auto; 
+    }
+
+    .button-group {
+      display: flex;
+      align-items: center;
+      gap: 10px; 
+
+      button {
+        padding: 10px 20px;
+        cursor: pointer;
+        //background-color: #007bff;
+        background-color: #121445;
+        color: #fff;
+        border: 0.1rem solid white;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+          //background-color: #0056b3;
+          background-color: #0a0c2b;
+          transform: scale(1.05);
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
       }
+    }
+  }
+}
 
-      &:active {
-        transform: scale(0.95); 
+
+
+
+
+
+
+// .create-post-button {
+//   padding: 10px 20px;
+//   cursor: pointer;
+//   //background-color: #007bff;
+//   background-color: #121445;
+//   color: #fff;
+//   border: none;
+//   border-radius: 5px;
+//   font-size: 14px;
+//   transition: background-color 0.3s ease, transform 0.3s ease;
+// }
+
+// .create-post-button:hover {
+//   background-color: #0056b3;
+//   transform: scale(1.05); 
+
+// .create-post-button:active {
+//   transform: scale(0.95);
+// }
+
+.platform-dropdown {
+  position: relative;
+  margin-bottom: 15px;
+
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .platform-icons {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #f9f9f9;
+    //background-color: #007bff;
+    background-color: #121445;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+
+    .platform-icon {
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+.postForm {
+  // Add your existing styles here
+
+  p {
+    margin-top: 10px; // Space above the filename
+    color: #333; // Change color if needed
+    font-size: 14px; // Adjust font size
+  }
+}
+
+.category-dropdown {
+  position: relative;
+  margin-bottom: 15px;
+
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .dropdown-options {
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 200px; // Adjusted width
+    max-height: 150px;
+    overflow-y: auto;
+
+    .dropdown-option {
+      padding: 10px;
+      cursor: pointer;
+      color: #333; // Set text color to dark
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: #f0f0f0;
       }
     }
   }
