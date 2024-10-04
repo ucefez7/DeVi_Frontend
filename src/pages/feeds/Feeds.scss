@@ -152,3 +152,64 @@
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.location-dropdown {
+  position: relative;
+  width: 100%; // Adjust width as necessary
+  margin-bottom: 1rem;
+
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333; // Dark text for input
+    font-size: 16px;
+    cursor: pointer;
+
+    &:focus {
+      border-color: #007bff; // Focus border color
+      outline: none;
+    }
+  }
+
+  .dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff; // Dropdown background
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 200px; // Limit height of dropdown
+    overflow-y: auto; // Add scroll if content overflows
+    z-index: 1000; // Make sure dropdown appears above other content
+
+    .dropdown-option {
+      padding: 10px;
+      color: #333; // Dark text color for options
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f0f0f0; // Hover effect
+      }
+    }
+  }
+}

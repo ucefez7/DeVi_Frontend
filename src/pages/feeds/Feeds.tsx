@@ -10,8 +10,50 @@ import { FaInstagram, FaFacebookF, FaYoutube, FaLinkedinIn, FaTwitter } from "re
 import { PiBird } from "react-icons/pi";
 
 const columns: GridColDef[] = [
-  // Columns definition remains the same
+  {
+    field: "categories",
+    headerName: "Category",
+    width: 120,
+  },
+  {
+    field: "subCategories",
+    type: "string",
+    headerName: "Sub Category",
+    width: 150,
+  },
+  {
+    field: "location",
+    type: "string",
+    headerName: "Location",
+    width: 150,
+  },
+  {
+    field: "platform",
+    headerName: "Platform",
+    type: "string",
+    width: 120,
+  },
+  {
+    field: "usernameOrName",
+    headerName: "Username",
+    type: "string",
+    width: 120,
+  },
+  {
+    field: "mediaUrl",
+    headerName: "Media",
+    width: 120,
+    
+  },
+  {
+    field: "description",
+    type: "string",
+    headerName: "Description",
+    width: 150,
+  },
+
 ];
+
 
 const categoryOptions = [
   "🛠️ Any Thing", "🏆 Awards", "🕴🏻 Business", "💼 Careers", 
@@ -36,17 +78,17 @@ const Feeds = () => {
     platform: "",
     usernameOrName: "",
     location: "",
-    category: "",
+    categories: "",
     subCategories: "",
     mediaUrl: null,
   });
 
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const handleCategorySelect = (category) => {
+  const handleCategorySelect = (categories) => {
     setFormData((prev) => ({
       ...prev,
-      category,
+      categories,
     }));
     setShowDropdown(false);
   };
@@ -60,7 +102,7 @@ const Feeds = () => {
       form.append("platform", formData.platform);
       form.append("usernameOrName", formData.usernameOrName);
       form.append("location", formData.location);
-      form.append("category", formData.category);
+      form.append("categories", formData.categories);
       form.append("subCategories", formData.subCategories);
       form.append("mediaUrl", formData.mediaUrl);
 
@@ -188,19 +230,20 @@ const Feeds = () => {
               <input
                 type="text"
                 placeholder="Select Category"
-                value={formData.category}
+                value={formData.categories}
                 readOnly
                 onClick={() => setShowDropdown((prev) => !prev)}
+                
               />
               {showDropdown && (
                 <div className="dropdown-options">
-                  {categoryOptions.map((category, index) => (
+                  {categoryOptions.map((categories, index) => (
                     <div
                       key={index}
                       className="dropdown-option"
-                      onClick={() => handleCategorySelect(category)}
+                      onClick={() => handleCategorySelect(categories)}
                     >
-                      {category}
+                      {categories}
                     </div>
                   ))}
                 </div>
