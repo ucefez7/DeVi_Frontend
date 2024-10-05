@@ -9,52 +9,6 @@ import { PiBird } from "react-icons/pi";
 import Modal from "./Modal";
 
 
-
-// const columns: GridColDef[] = [
-//   {
-//     field: "categories",
-//     headerName: "Category",
-//     width: 120,
-//   },
-//   {
-//     field: "subCategories",
-//     type: "string",
-//     headerName: "Sub Category",
-//     width: 150,
-//   },
-//   {
-//     field: "location",
-//     type: "string",
-//     headerName: "Location",
-//     width: 150,
-//   },
-//   {
-//     field: "platform",
-//     headerName: "Platform",
-//     type: "string",
-//     width: 120,
-//   },
-//   {
-//     field: "usernameOrName",
-//     headerName: "Username",
-//     type: "string",
-//     width: 120,
-//   },
-//   {
-//     field: "mediaUrl",
-//     headerName: "Media",
-//     width: 120,
-    
-//   },
-//   {
-//     field: "description",
-//     type: "string",
-//     headerName: "Description",
-//     width: 150,
-//   },
-// ];
-
-
 const columns: GridColDef[] = [
 
   {
@@ -169,6 +123,9 @@ const Feeds = () => {
     setShowDropdown(false);
   };
 
+
+
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true); // Set loading to true
@@ -210,6 +167,12 @@ console.log("Data ethann: " +response);
       setLoading(false); // Reset loading state
     }
   };
+
+
+
+
+
+
 
   const platforms = [
     { name: "DeVi", icon: <PiBird /> },
